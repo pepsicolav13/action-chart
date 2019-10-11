@@ -1,0 +1,14 @@
+name: deploy on prodd
+on:
+  pull_request:
+    branches:
+    - master
+jobs:
+  prod:
+    name: deploy on stage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: deploy master
+      run: cat README.md
+

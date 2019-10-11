@@ -1,0 +1,14 @@
+name: deploy on stage wf
+on:
+  push:
+    branches:
+    - stage
+jobs:
+  stage:
+    name: deploy on stage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: deploy
+      run: cat README.md
+
