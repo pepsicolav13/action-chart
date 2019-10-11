@@ -4,7 +4,7 @@ on:
     branches:
     - master
     types:
-    - closed
+    - synchronize
 jobs:
   prod:
     name: deploy on stage
