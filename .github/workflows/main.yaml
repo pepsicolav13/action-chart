@@ -12,3 +12,11 @@ jobs:
     - name: deploy
       run: cat README.md
 
+    - uses: Ilshidur/action-slack@master
+      name: Slack notification-success
+      if: success()
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      with:
+        args: 'this is stage push ${{ github.sha }}'
+

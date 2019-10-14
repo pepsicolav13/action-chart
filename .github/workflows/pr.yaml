@@ -1,4 +1,4 @@
-name: deploy on prodd
+name: deploy on prod
 on:
   pull_request:
     branches:
@@ -7,10 +7,18 @@ on:
     - closed
 jobs:
   prod:
-    name: deploy on stage
+    name: deploy on prod
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: deploy master
       run: cat README.md
+
+    - uses: Ilshidur/action-slack@master
+      name: Slack notification-success
+      if: success()
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      with:
+        args: 'this is pr master closed (main.yaml) ${{ github.sha }}'
 
