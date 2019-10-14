@@ -1,0 +1,19 @@
+name: check merge
+on:
+  pull_request:
+    branches:
+    - master
+    types:
+    - opened
+
+jobs:
+  prod:
+    name: check merge
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: deploy master
+      run: |
+          echo "check everything before merge"
+          echo "$GITHUB_EVENT_NAME"
+

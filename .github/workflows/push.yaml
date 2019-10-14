@@ -1,18 +1,17 @@
-name: deploy master
+name: pushed stage
 on:
   push:
     branches:
-    - master
+    - stage
 jobs:
-  prod:
-    name: deploy master
+  stage:
+    name: deploy on stage
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: deploy master
+    - name: deploy
       run: |
           cat README.md
-          echo "deploy to master"
           echo "$GITHUB_EVENT_NAME"
 
 #    - uses: Ilshidur/action-slack@master
@@ -21,5 +20,5 @@ jobs:
 #      env:
 #        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 #      with:
-#        args: 'this is pr master closed (main.yaml) ${{ github.sha }}'
+#        args: 'this is stage push ${{ github.sha }}'
 
